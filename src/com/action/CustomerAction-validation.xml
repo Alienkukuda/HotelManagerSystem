@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC  "-//Apache Struts//XWork Validator 1.0.2//EN"  
+"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="customer.c_id">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入账号</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">10</param>
+			<message>账号必须在${minLength}~${maxLength}位之间</message>
+		</field-validator>
+	</field>
+	<field name="customer.c_password">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入密码</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">20</param>
+			<message>密码必须在${minLength}~${maxLength}位之间</message>
+		</field-validator>
+	</field>
+	<field name="customer.c_name">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入用户名</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="maxLength">20</param>
+			<message>姓名必须在${minLength}~${maxLength}位之间</message>
+		</field-validator>
+	</field>
+	<field name="customer.c_idnumber">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入身份证号</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">18</param>
+			<param name="maxLength">18</param>
+			<message>身份证号位数错误</message>
+		</field-validator>
+	</field>
+	<field name="customer.c_phone">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入手机号</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">11</param>
+			<param name="maxLength">11</param>
+			<message>手机号为11位</message>
+		</field-validator>
+	</field>
+	<field name="customer.c_email">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入邮箱</message>
+		</field-validator>
+		<field-validator type="email">
+		<message>请输入正确的邮箱格式</message>
+		</field-validator>
+	</field>
+</validators>

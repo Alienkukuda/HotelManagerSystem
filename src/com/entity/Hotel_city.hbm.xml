@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.entity">
+    <class name="Hotel_city">
+       	<id name="h_id" type="java.lang.String"/>
+    	<property name="h_name" length="20" not-null="true"/>
+ 		<property name="h_password" length="20" not-null="true"/> 
+ 		<property name="h_address" length="20" not-null="true"/>
+ 		<property name="h_intro" length="50" /> 
+ 		<property name="h_phone" length="11" not-null="true"/> 
+ 		<property name="h_license" length="200"/> 
+ 		<property name="ci_name" length="20"/>
+ 		<property name="h_picture" length="200"/>
+    	
+    </class>
+</hibernate-mapping>

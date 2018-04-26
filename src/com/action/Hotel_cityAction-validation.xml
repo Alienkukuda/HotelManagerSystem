@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC  "-//Apache Struts//XWork Validator 1.0.2//EN"  
+"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="hotel_city.h_id">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入账号</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">10</param>
+			<message>账号必须在${minLength}~${maxLength}位之间</message>
+		</field-validator>
+	</field>
+	<field name="hotel_city.h_password">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入密码</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">20</param>
+			<message>密码必须在${minLength}~${maxLength}位之间</message>
+		</field-validator>
+	</field>
+	<field name="hotel_city.h_name">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入旅店名</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="maxLength">20</param>
+			<message>旅店名必须在${minLength}~${maxLength}个字之间</message>
+		</field-validator>
+	</field>
+	<field name="hotel_city.h_address">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入旅店地址</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">20</param>
+			<message>旅店地址必须在${minLength}~${maxLength}个字之间</message>
+		</field-validator>
+	</field>
+	<field name="hotel_city.h_intro">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>不要忘了写旅店简介哦~</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">50</param>
+			<message>旅店简介必须在${minLength}~${maxLength}个字之间</message>
+		</field-validator>
+	</field>
+	<field name="hotel_city.h_phone">
+		<field-validator type="requiredstring">
+ 			<param name="trim">true</param> 
+			<message>请输入手机号</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">11</param>
+			<param name="maxLength">11</param>
+			<message>手机号为11位</message>
+		</field-validator>
+	</field>
+</validators>
