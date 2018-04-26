@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.entity">
+    <class name="Orderlist">
+       	<id name="od_id" type="java.lang.Integer" />
+    	<property name="od_price" length="10" not-null="true" />
+ 		<property name="od_time" length="20" not-null="true" /> 
+ 		<property name="od_startdate" length="20" />
+ 		<property name="od_enddate" length="20" /> 
+ 		<property name="cus_review" length="200" /> 
+ 		<property name="od_status" length="1" type="java.lang.Integer"  /> 
+ 		<property name="od_paytype" length="8" />
+ 		<many-to-one name="hotel_room" class="com.entity.Hotel_room" >
+ 			<column name="r_no" not-null="true"/>
+ 		</many-to-one>
+ 		<many-to-one name="customer" class="com.entity.Customer" >
+ 			<column name="c_id" not-null="true"/>
+ 		</many-to-one>
+    </class>
+</hibernate-mapping>

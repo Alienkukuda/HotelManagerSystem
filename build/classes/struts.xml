@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+      "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+      "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="false"></constant>
+     <!-- 将对象交给spring管理 -->  
+    <constant name="struts.objectFactory" value="spring" />  
+    <!-- 指定资源编码类型 -->  
+    <constant name="struts.i18n.encoding" value="UTF-8" />   
+    <!-- 指定每次请求到达，重新加载资源文件 -->  
+    <constant name="struts.i18n.reload" value="false" />  
+    <!-- 指定每次配置文件更改后，自动重新加载 -->  
+    <constant name="struts.configuration.xml.reload" value="false" />  
+    
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/><!-- DMI配置 -->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+    
+    <package name="HotelTest" extends="struts-default" namespace="/">
+        <action name="BaseAction" class="com.action.BaseAction">
+                <result name="0" type="redirectAction">
+                   <param name="actionName">CustomerAction!login</param>
+                </result>
+                <result name="1" type="redirectAction">
+                	<param name="actionName">Hotel_cityAction!login</param>
+                </result>
+                <result name="2" type="redirectAction">
+                	<param name="actionName">ManagerAction!login</param>
+                </result>
+                <result name="success">/index_search_grep.jsp</result>
+        </action>
+        <action name="CustomerAction" class="com.action.CustomerAction">
+                <result name="c_list">/hotel_city_list.jsp</result>
+                <result name="o_show">/customer_show_my_orderlist.jsp</result>
+                <result name="charge_success">/success_charge.jsp</result>
+                <result name="register_success">/index_search_grep.jsp</result>
+                <result name="register_fail">/fail_customer_register.jsp</result>
+                <result name="login_success">/index_search_grep.jsp</result>
+                <result name="login_fail">/fail_login.jsp</result>
+                <result name="customerInfo">/manager_show_customer.jsp</result>    
+                <result name="delete_success">/success_delete_customer.jsp</result>
+                <result name="input">/index_customer_register.jsp</result>     
+        </action>
+        <action name="Hotel_cityAction" class="com.action.Hotel_cityAction">
+        		<result name="find_success">/hotel_room_list.jsp</result>
+                <result name="register_success" type="redirectAction">
+                	<param name="actionName">Hotel_cityAction!findHotel</param>
+                </result>
+        		<result name="showHotelInfo">/hotel_home.jsp</result>
+                <result name="login_success" type="redirectAction">
+               		<param name="actionName">Hotel_cityAction!findHotel</param>
+				</result>
+                <result name="login_fail">/fail_login.jsp</result>
+				<result name="register_success2">/success_update.jsp</result>
+                <result name="message1">/customer_hotel_message.jsp</result>
+                <result name="hotelInfo">/manager_show_hotel.jsp</result>
+                <result name="delete_success">/success_delete_hotel.jsp</result>
+                <result name="input">/index_hotel_register.jsp</result>
+        </action>
+        <action name="Hotel_roomAction" class="com.action.Hotel_roomAction">
+               <result name="showHotel_roomInfo">/hotel_show_room_info.jsp</result>
+               <result name="register_success">/success_add_room.jsp</result>
+               <result name="delete_success">/success_delete_room.jsp</result>
+               <result name="updateHotel_roomInfo">/hotel_update_room_info.jsp</result>
+        </action> 
+        <action name="OrderlistAction" class="com.action.OrderlistAction">
+                <result name="choose">/customer_choose_date.jsp</result>
+                <result name="no_login">/fail_in.jsp</result>
+                <result name="order">/customer_show_orderlist.jsp</result>
+                <result name="cancel">/success_cancel.jsp</result>
+                <result name="affirm_success_status1">/success_affirm1.jsp</result>
+                <result name="affirm_success_status2">/success_affirm2.jsp</result>
+                <result name="affirm_fail">/customer_pay_fail.jsp</result>
+              	<result name="review">/success_review.jsp</result>      
+              	<result name="orderlistInfo">/manager_show_orderlist.jsp</result>  
+              	<result name="hotel_my_list">/hotel_show_orderlist.jsp</result>
+              	<result name="od_affirm">/success_od_affirm.jsp</result>
+        </action>
+        <action name="ManagerAction" class="com.action.ManagerAction">
+                <result name="login_fail">/fail_login.jsp</result>
+                <result name="showManagerInfo">/manager_home.jsp</result>
+                <result name="login_success" type="redirectAction">
+               		<param name="actionName">ManagerAction!findManager</param>
+				</result>
+				<result name="register_success">/success_add_manager.jsp</result>
+        </action>
+        <action name="MessageAction" class="com.action.MessageAction">
+                <result name="add_success">/success_add_message.jsp</result>
+                <result name="showMessageList">/hotel_show_messagelist.jsp</result>
+                <result name="messageList">/manager_show_message.jsp</result>
+                <result name="delete_success">/success_delete_message.jsp</result>       
+        </action>
+    </package>
+</struts>

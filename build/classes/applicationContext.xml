@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+ 	<!-- 使用 annotation --> 
+	<context:annotation-config />
+	
+	<!-- 使用 annotation 自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->   
+	<context:component-scan base-package="com"></context:component-scan>
+	
+	<!-- 数据库配置 --> 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/hotel_management" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+
+ 	<!-- sessionFactory --> 
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />  
+					 <property name="mappingResources">
+		    <list>
+		      <value>com/entity/Customer.hbm.xml</value>
+		      <value>com/entity/Hotel_city.hbm.xml</value>
+		      <value>com/entity/Hotel_room.hbm.xml</value>
+		      <value>com/entity/Manager.hbm.xml</value>
+		      <value>com/entity/Message.hbm.xml</value>
+		      <value>com/entity/Orderlist.hbm.xml</value>
+		    </list>
+			</property>
+		<property name="hibernateProperties">
+			<value>
+		      	hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+		      	hibernate.hbm2ddl.auto=update
+		      	hibernate.show_sql=false
+		      	hibernate.format_sql=false
+		  	</value>
+		</property>
+		<!-- 包扫描的方式加载注解类(推荐) -->
+		<!-- <property name="packagesToScan" value="com.entity"/> -->
+	</bean>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
+	
+	<!-- 用注解来实现事务管理 -->  
+  	<tx:annotation-driven transaction-manager="txManager"/>
+    <aop:config>
+		<aop:pointcut
+			expression="execution(* com.dao.*.*(..))"
+			id="servicePointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
+	</aop:config>
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+</beans>
+    
+    
